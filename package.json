@@ -1,0 +1,26 @@
+{
+  "name": "vite-vitest-demo",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "@vitest/ui": "latest",
+    "@vue/test-utils": "*",
+    "c8": "github:brev/c8#all-flag-includes-extensions",
+    "jsdom": "^19.0.0",
+    "path": "^0.12.7",
+    "vite": "latest",
+    "vitest": "0.12.4"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^2.2.2",
+    "vue": "^3.2.31"
+  }
+}
