@@ -1,10 +1,10 @@
+import Homepage from './homepage.vue'
 import { mount } from '@vue/test-utils'
-import QuantityComponent from './quantity-component.vue'
 
-describe('QuantityComponent', () => {
+describe('Homepage', () => {
   describe('Mount', () => {
     it('should mount correctly', () => {
-      const wrapper = mount(QuantityComponent)
+      const wrapper = mount(Homepage)
       expect(wrapper.html()).toMatchSnapshot()
     })
   })

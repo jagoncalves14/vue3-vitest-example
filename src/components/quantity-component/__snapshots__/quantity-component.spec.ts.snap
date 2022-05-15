@@ -1,5 +1,0 @@
-// Vitest Snapshot v1
-
-exports[`QuantityComponent > Mount > should mount correctly 1`] = `"<input class=\\"quantity-component\\" type=\\"text\\">"`;
-
-exports[`QuantityComponent Mount should mount correctly 1`] = `<input class="quantity-component" type="text">`;

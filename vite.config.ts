@@ -1,12 +1,11 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import * as path from 'path'
 
-function resolveSrc(_path) {
-  // @ts-ignore
-  return path.resolve(__dirname, _path);
+function resolveSrc(_path: string) {
+  return path.resolve(__dirname, _path)
 }
 
 export default defineConfig({
@@ -28,8 +27,6 @@ export default defineConfig({
     environment: 'jsdom',
     include: ['src/**/*.spec.ts'],
     exclude: ['node_modules', 'dist'],
-    coverage: {
-      all: true,
-    },
+    setupFiles: ['vitest-setup.ts'],
   },
-});
+})

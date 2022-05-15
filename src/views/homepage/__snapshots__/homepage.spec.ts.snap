@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`Homepage > Mount > should mount correctly 1`] = `
+<div class="homepage-container">
+  <div class="movie-list"><input class="movie-list__search" type="text" placeholder="Search for a movie">
+    <ul></ul>
+  </div>
+  <div class="movie-preview">
+    <div class="movie-preview__image"><img></div>
+    <h3 class="movie-preview__title"></h3>
+    <div class="movie-preview__description"></div>
+  </div>
+</div>
+`;

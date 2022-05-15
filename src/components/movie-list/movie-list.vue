@@ -1,11 +1,6 @@
 <template>
   <div class="movie-list">
-    <input
-      class="movie-list__search"
-      type="text"
-      placeholder="Search for a movie"
-      @change="updateSearchQuery"
-    />
+    <input class="movie-list__search" type="text" placeholder="Search for a movie" @change="updateSearchQuery" />
     <ul>
       <li
         v-for="(item, index) in filteredMovies"
@@ -20,133 +15,133 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { TMovieData } from '@/types'
+  import { defineComponent } from 'vue'
+  import { TMovieData } from 'types/api'
 
-export default defineComponent({
-  name: 'MovieList',
+  export default defineComponent({
+    name: 'MovieList',
 
-  emits: ['selected-movie'],
+    emits: ['selected-movie'],
 
-  props: {
-    movieList: {
-      type: Array as () => TMovieData[],
-      default: []
-    },
-    activeMovieId: {
-      type: Number,
-      default: 0
-    }
-  },
-
-  data() {
-    return {
-      searchQuery: ''
-    }
-  },
-
-  computed: {
-    filteredMovies(): TMovieData[] {
-      if (!this.searchQuery) return this.movieList
-
-      return this.movieList.filter((movie: TMovieData) => {
-        const searchQuery = this.searchQuery.toLowerCase()
-        const movieTitle = movie.title.toLowerCase()
-        const titleMatchesQuery = movieTitle.includes(searchQuery)
-
-        return titleMatchesQuery
-      })
+    props: {
+      movieList: {
+        type: Array as () => TMovieData[],
+        default: [],
+      },
+      activeMovieId: {
+        type: Number,
+        default: 0,
+      },
     },
 
-    isActiveMovieOnFilteredList(): boolean {
-      return this.filteredMovies.some((movie: TMovieData) => {
-        return movie.id === this.activeMovieId
-      })
-    }
-  },
-
-  methods: {
-    previewMovie(data: TMovieData) {
-      this.$emit('selected-movie', data.id)
-    },
-
-    updateSearchQuery(event: Event) {
-      const target = event?.target as HTMLInputElement
-      this.searchQuery = target?.value as string | ''
-    }
-  },
-
-  watch: {
-    filteredMovies: {
-      deep: true,
-      handler(movieList: TMovieData[]) {
-        if (movieList.length >= 1 && !this.isActiveMovieOnFilteredList) {
-          this.previewMovie(movieList[0])
-        }
+    data() {
+      return {
+        searchQuery: '',
       }
-    }
-  }
-})
+    },
+
+    computed: {
+      filteredMovies(): TMovieData[] {
+        if (!this.searchQuery) return this.movieList
+
+        return this.movieList.filter((movie: TMovieData) => {
+          const searchQuery = this.searchQuery.toLowerCase()
+          const movieTitle = movie.title.toLowerCase()
+          const titleMatchesQuery = movieTitle.includes(searchQuery)
+
+          return titleMatchesQuery
+        })
+      },
+
+      isActiveMovieOnFilteredList(): boolean {
+        return this.filteredMovies.some((movie: TMovieData) => {
+          return movie.id === this.activeMovieId
+        })
+      },
+    },
+
+    methods: {
+      previewMovie(data: TMovieData) {
+        this.$emit('selected-movie', data.id)
+      },
+
+      updateSearchQuery(event: Event) {
+        const target = event?.target as HTMLInputElement
+        this.searchQuery = target?.value as string | ''
+      },
+    },
+
+    watch: {
+      filteredMovies: {
+        deep: true,
+        handler(movieList: TMovieData[]) {
+          if (movieList.length >= 1 && !this.isActiveMovieOnFilteredList) {
+            this.previewMovie(movieList[0])
+          }
+        },
+      },
+    },
+  })
 </script>
 
 <style lang="scss">
-$header-height: 83px;
-$input-height: 48px;
+  $header-height: 83px;
+  $input-height: 48px;
 
-.movie-list {
-  position: fixed;
-  top: $header-height;
-  left: 0;
-  height: calc(100% - $header-height);
-  width: 25%;
-  background-color: white;
-  border-right: 1px solid black;
-  color: black;
+  .movie-list {
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    width: 25%;
+    height: calc(100% - $header-height);
+    color: black;
+    background-color: white;
+    border-right: 1px solid black;
 
-  &__search {
-    width: 100%;
-    padding: 15px 30px;
-    box-sizing: border-box;
-    border: none;
-    border-radius: none;
-    font-size: 16px;
-    background: rgba(blue, 0.1);
-    color: rgba(blue, 0.5);
-
-    &::placeholder {
+    &__search {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 15px 30px;
+      font-size: 16px;
       color: rgba(blue, 0.5);
+      background: rgba(blue, 0.1);
+      border: none;
+      border-radius: none;
+
+      &::placeholder {
+        color: rgba(blue, 0.5);
+      }
+
+      &:focus {
+        background: rgba(blue, 0.05);
+        outline: none;
+      }
     }
 
-    &:focus {
-      outline: none;
-      background: rgba(blue, 0.05);
+    ul {
+      position: relative;
+      height: calc(100% - $input-height);
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      border-top: 1px solid rgba(black, 1);
+    }
+
+    ul li {
+      padding: 15px 30px;
+      text-align: left;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(black, 1);
+
+      &:hover {
+        background: rgba(black, 0.05);
+      }
+
+      &.active {
+        color: white;
+        background: rgba(blue, 0.5);
+      }
     }
   }
-
-  ul {
-    position: relative;
-    height: calc(100% - $input-height);
-    overflow: hidden;
-    overflow-y: auto;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid rgba(black, 1);
-  }
-
-  ul li {
-    padding: 15px 30px;
-    border-bottom: 1px solid rgba(black, 1);
-    text-align: left;
-    cursor: pointer;
-
-    &:hover {
-      background: rgba(black, 0.05);
-    }
-
-    &.active {
-      background: rgba(blue, 0.5);
-      color: white;
-    }
-  }
-}
 </style>

@@ -1,0 +1,49 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "@vue/typescript/recommended",
+    "@vue/prettier",
+    "@vue/prettier/@typescript-eslint"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "vue/attribute-hyphenation": ["error", "always"],
+    "vue/component-definition-name-casing": ["error", "PascalCase"],
+    "vue/component-name-in-template-casing": ["error", "PascalCase"],
+    "vue/padding-line-between-blocks": ["error", "always"],
+    "vue/prop-name-casing": ["error", "camelCase"],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.spec.ts", "src/**/*.{js,vue}"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
+}

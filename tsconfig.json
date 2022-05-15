@@ -8,6 +8,7 @@
     "sourceMap": true,
     "lib": ["esnext", "dom"],
     "types": ["vite/client", "vitest/globals"],
+    "typeRoots": ["src/types"],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
     "paths": {
       "@/*": ["./src/*"],
@@ -15,7 +16,8 @@
       "views/*": ["./src/views/*"],
       "router/*": ["./src/router/*"],
       "assets/*": ["./src/assets/*"],
+      "types/*": ["./src/types/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"]
 }
