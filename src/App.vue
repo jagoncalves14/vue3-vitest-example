@@ -19,39 +19,39 @@
 $header-height: 83px;
 
 body {
-  margin: 0px;
+  margin: 0;
 }
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+  text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
 header {
   position: fixed;
-  width: 100%;
-  max-width: 100%;
   top: 0;
-  height: 83px;
   left: 0;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  height: 83px;
   padding: 0 30px;
   border-bottom: 1px solid black;
-  box-sizing: border-box;
 
   .logo {
     display: inline-flex;
     flex: 0 1 auto;
     align-items: center;
-    margin-left: 0;
     margin-right: auto;
+    margin-left: 0;
     font-size: 20px;
-    line-height: 18px;
     font-weight: bold;
+    line-height: 18px;
     text-transform: uppercase;
 
     img {
@@ -62,10 +62,10 @@ header {
   nav {
     display: flex;
     align-items: center;
-    margin: 0;
     padding: 0;
-    background-color: white;
+    margin: 0;
     text-align: left;
+    background-color: white;
   }
 
   nav a {

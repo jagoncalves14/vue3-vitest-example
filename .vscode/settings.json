@@ -1,0 +1,23 @@
+{
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": true,
+  "editor.formatOnSave": true,
+  "html.format.enable": false,
+  "json.format.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.run": "onType",
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss", "sass", "postcss", "vue"],
+  "css.validate": false,
+  "scss.validate": false,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }, 
+  "stylelint.packageManager": "pnpm",
+  "eslint.packageManager": "pnpm",
+}

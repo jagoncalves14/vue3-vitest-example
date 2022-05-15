@@ -1,0 +1,66 @@
+{
+  "extends": [
+    "stylelint-config-recess-order",
+    "stylelint-config-prettier",
+    "stylelint-config-standard-scss",
+    "stylelint-config-html/vue",
+    "stylelint-config-recommended-vue/scss"
+  ],
+  "rules": {
+    "string-quotes": "single",
+    "string-no-newline": null,
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "selector-max-universal": 1,
+    "selector-max-type": [
+      1,
+      {
+        "ignore": ["child", "descendant", "compounded"]
+      }
+    ],
+    "keyframes-name-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": ["blockless-after-same-name-blockless", "first-nested"],
+        "ignore": ["after-comment"],
+        "ignoreAtRules": ["else"]
+      }
+    ],
+    "value-keyword-case": null,
+    "scss/dollar-variable-colon-space-after": "always",
+    "scss/dollar-variable-colon-space-before": "never",
+    "scss/dollar-variable-no-missing-interpolation": true,
+    "scss/dollar-variable-pattern": "^[a-z0-9-]+$",
+    "scss/double-slash-comment-whitespace-inside": "always",
+    "scss/operator-no-newline-before": true,
+    "scss/operator-no-unspaced": true,
+    "scss/selector-no-redundant-nesting-selector": true,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["v-deep"]
+      }
+    ],
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "selector-no-vendor-prefix": null,
+    "value-no-vendor-prefix": null,
+    "property-no-vendor-prefix": null,
+    "shorthand-property-no-redundant-values": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "alpha-value-notation": null,
+    "color-function-notation": null,
+    "number-max-precision": null,
+    "scss/at-import-no-partial-leading-underscore": null,
+    "scss/at-import-partial-extension": null,
+    "max-line-length": null
+  }
+}
