@@ -6,7 +6,7 @@
     <nav>
       <router-link to="/">Popular Movies</router-link>
       <div class="separator">|</div>
-      <router-link to="/contact">Contact</router-link>
+      <router-link to="/about">About</router-link>
     </nav>
   </header>
 
