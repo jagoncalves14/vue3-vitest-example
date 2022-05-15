@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuantityComponent Mount should mount correctly 1`] = `<input class="quantity-component" type="text">`;

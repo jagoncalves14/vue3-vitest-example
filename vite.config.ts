@@ -1,7 +1,5 @@
 /// <reference types="vitest" />
 
-// Configure Vitest (https://vitest.dev/config)
-
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
@@ -17,6 +15,9 @@ export default defineConfig({
     alias: {
       '@': resolveSrc('./src'),
       components: resolveSrc('./src/components'),
+      views: resolveSrc('./src/views'),
+      router: resolveSrc('./src/router'),
+      assets: resolveSrc('./src/assets'),
       node_modules: resolveSrc('./node_modules'),
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
