@@ -49,8 +49,11 @@ describe('Homepage', () => {
         data: [],
       }
 
+      const getMoviesSpy = vi.spyOn(getMovies, 'default')
+
       await Homepage.mounted?.call(context)
 
+      expect(getMoviesSpy).toHaveBeenCalled()
       expect(context.data).toEqual(getMoviesMock.results)
     })
 
@@ -68,6 +71,7 @@ describe('Homepage', () => {
       try {
         await Homepage.mounted?.call(context)
       } catch (error) {
+        expect(getMoviesSpy).toHaveBeenCalled()
         expect(context.data).toEqual([])
       }
     })
