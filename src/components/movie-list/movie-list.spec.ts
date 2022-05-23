@@ -1,5 +1,5 @@
 import MovieList from './movie-list.vue'
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import { getMoviesMock } from '@/api/__mocks__/get-movies'
 
 vi.mock('@/api/get-movies')
@@ -14,6 +14,8 @@ describe('MovieList', () => {
         },
       })
 
+      await flushPromises()
+
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -25,6 +27,8 @@ describe('MovieList', () => {
         },
       })
 
+      await flushPromises()
+
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -35,6 +39,8 @@ describe('MovieList', () => {
           activeMovieId: 0,
         },
       })
+
+      await flushPromises()
 
       expect(wrapper.html()).toMatchSnapshot()
     })

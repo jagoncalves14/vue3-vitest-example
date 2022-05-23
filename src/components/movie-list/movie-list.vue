@@ -1,7 +1,7 @@
 <template>
   <div class="movie-list">
     <input class="movie-list__search" type="text" placeholder="Search for a movie" @change="updateSearchQuery" />
-    <ul v-if="filteredMovies.length">
+    <ul ref="movieListUl">
       <li
         v-for="(item, index) in filteredMovies"
         :key="index"
@@ -38,6 +38,21 @@
       return {
         searchQuery: '',
       }
+    },
+
+    mounted() {
+      const onScrollToBottom = this.$el
+
+      // @ts-ignore
+      const onIntersection = ([{ isIntersecting, target }]) => {
+        if (isIntersecting) {
+          target.classList.add('seen')
+        }
+      }
+
+      // @ts-ignore
+      const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
+      observer.observe(onScrollToBottom)
     },
 
     computed: {
@@ -95,6 +110,10 @@
     color: black;
     background-color: white;
     border-right: 1px solid black;
+
+    &.seen {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
 
     &__search {
       box-sizing: border-box;
