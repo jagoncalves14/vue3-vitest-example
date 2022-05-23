@@ -55,7 +55,7 @@ describe('Homepage', () => {
       expect(context.data).toEqual(getMoviesMock.results)
     })
 
-    it('should populate data - with error', async () => {
+    it('should populate data - with error', () => {
       const context = {
         data: [],
       }
@@ -65,12 +65,9 @@ describe('Homepage', () => {
         return Promise.reject('Some error')
       })
 
-      try {
-        await Homepage.mounted?.call(context)
-      } catch (error) {
-        expect(getMovies).toHaveBeenCalled()
-        expect(context.data).toEqual([])
-      }
+      Homepage.mounted?.call(context)
+      expect(getMovies).toHaveBeenCalled()
+      expect(context.data).toEqual([])
     })
   })
 
