@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="logo">
-      <img src="@/assets/logo.svg" />
+      <img src="@/assets/newlogo.svg" />
     </div>
     <nav>
       <router-link to="/">Popular Movies</router-link>

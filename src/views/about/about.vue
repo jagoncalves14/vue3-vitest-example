@@ -1,7 +1,7 @@
 <template>
   <div class="about-container">
     <h1>ABOUT</h1>
-    <h2>Hi Vue.Porto 👋</h2>
+    <h2>Hi Vue.{{ location }} 👋</h2>
     <p>This is a simple <strong>Vite + Vue3 + Vitest App</strong> demo made for {{ eventDate() }}.</p>
   </div>
 </template>
@@ -13,6 +13,12 @@
     methods: {
       eventDate() {
         return new Date().toLocaleDateString()
+      },
+    },
+
+    computed: {
+      location(): string {
+        return import.meta.env.VITE_EVENT_LOCATION
       },
     },
   })
