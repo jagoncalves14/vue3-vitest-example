@@ -39,4 +39,12 @@ describe('About', () => {
       expect(response).toBe('5/25/2022')
     })
   })
+
+  describe('Computed', () => {
+    it('location', () => {
+      const response = About.computed?.location.call({})
+
+      expect(response).toBe('Lisbon')
+    })
+  })
 })
