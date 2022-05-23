@@ -40,6 +40,21 @@
       }
     },
 
+    mounted() {
+      const onScrollToBottom = this.$el
+
+      // @ts-ignore
+      const onIntersection = ([{ isIntersecting, target }]) => {
+        if (isIntersecting) {
+          target.classList.add('seen')
+        }
+      }
+
+      // @ts-ignore
+      const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
+      observer.observe(onScrollToBottom)
+    },
+
     computed: {
       filteredMovies(): TMovieData[] {
         if (!this.searchQuery) return this.movieList
@@ -95,6 +110,10 @@
     color: black;
     background-color: white;
     border-right: 1px solid black;
+
+    &.seen {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
 
     &__search {
       box-sizing: border-box;
