@@ -1,7 +1,7 @@
 <template>
   <div class="movie-list">
     <input class="movie-list__search" type="text" placeholder="Search for a movie" @change="updateSearchQuery" />
-    <ul ref="movieListUl">
+    <ul v-if="filteredMovies.length">
       <li
         v-for="(item, index) in filteredMovies"
         :key="index"
