@@ -1,14 +1,59 @@
 // Vitest Snapshot v1
 
-exports[`Homepage > Mount > should mount correctly 1`] = `
+exports[`Homepage > Mount - with data > should mount correctly - with data 1`] = `
 <div class="homepage-container">
   <div class="movie-list"><input class="movie-list__search" type="text" placeholder="Search for a movie">
-    <ul></ul>
+    <ul>
+      <li class="active">Morbius</li>
+      <li class="">The Lost City</li>
+      <li class="">Sonic the Hedgehog 2</li>
+      <li class="">The Northman</li>
+      <li class="">The Exorcism of God</li>
+      <li class="">Uncharted</li>
+      <li class="">The Batman</li>
+      <li class="">Doctor Strange in the Multiverse of Madness</li>
+      <li class="">Spider-Man: No Way Home</li>
+      <li class="">The Bad Guys</li>
+      <li class="">The Contractor</li>
+      <li class="">Turning Red</li>
+      <li class="">Moonfall</li>
+      <li class="">The Takedown</li>
+      <li class="">Virus:32</li>
+      <li class="">Ambulance</li>
+      <li class="">Doctor Strange</li>
+      <li class="">The Outfit</li>
+      <li class="">Fortress: Sniper's Eye</li>
+      <li class="">Encanto</li>
+    </ul>
   </div>
   <div class="movie-preview">
-    <div class="movie-preview__image"><img></div>
-    <h3 class="movie-preview__title"></h3>
-    <div class="movie-preview__description"></div>
+    <div class="movie-preview__image"><img src="https://image.tmdb.org/t/p/w780/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg"></div>
+    <h3 class="movie-preview__title">Morbius</h3>
+  </div>
+</div>
+`;
+
+exports[`Homepage > Mount - with data > should mount correctly - with just one movie 1`] = `
+<div class="homepage-container">
+  <div class="movie-list"><input class="movie-list__search" type="text" placeholder="Search for a movie">
+    <ul>
+      <li class="active">Morbius</li>
+    </ul>
+  </div>
+  <div class="movie-preview">
+    <div class="movie-preview__image"><img src="https://image.tmdb.org/t/p/w780/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg"></div>
+    <h3 class="movie-preview__title">Morbius</h3>
+  </div>
+</div>
+`;
+
+exports[`Homepage > Mount - with data > should mount correctly - without movies results 1`] = `
+<div class="homepage-container">
+  <div class="movie-list"><input class="movie-list__search" type="text" placeholder="Search for a movie">
+    <!--v-if-->
+  </div>
+  <div class="movie-preview">
+    <h3 class="movie-preview__loading">Loading...</h3>
   </div>
 </div>
 `;

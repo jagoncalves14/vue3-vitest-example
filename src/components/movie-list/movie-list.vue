@@ -1,7 +1,7 @@
 <template>
   <div class="movie-list">
     <input class="movie-list__search" type="text" placeholder="Search for a movie" @change="updateSearchQuery" />
-    <ul>
+    <ul v-if="filteredMovies.length">
       <li
         v-for="(item, index) in filteredMovies"
         :key="index"
@@ -16,7 +16,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import { TMovieData } from 'types/api'
+  import { TMovieData } from '@/types/api'
 
   export default defineComponent({
     name: 'MovieList',

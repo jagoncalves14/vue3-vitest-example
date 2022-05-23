@@ -7,12 +7,12 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import axios, { AxiosResponse } from 'axios'
   import MovieList from '@/components/movie-list/movie-list.vue'
   import MoviePreview from '@/components/movie-preview/movie-preview.vue'
+  import getMoviesList from '@/api/get-movies'
 
-  import { BASE_IMAGE_URL, API_URL } from '@/constants'
-  import { TMovieData, TMoviePreview } from 'types/api'
+  import { BASE_IMAGE_URL } from '@/constants'
+  import { TMovieData, TMoviePreview } from '@/types/api'
 
   export default defineComponent({
     name: 'HomePage',
@@ -30,25 +30,24 @@
       }
     },
 
-    mounted() {
-      axios.get(API_URL).then((response: AxiosResponse) => {
-        this.data = response.data.results
-      })
+    async mounted() {
+      try {
+        this.data = await getMoviesList()
+      } catch (error) {
+        this.data = []
+        throw error
+      }
     },
 
     methods: {
       setActiveMovie(id: number) {
         this.activeMovieId = id
       },
-
-      bestLaCroixFlavor() {
-        return 'grapefruit'
-      },
     },
 
     watch: {
       data(movieList: TMovieData[]) {
-        movieList.length > 0 && this.setActiveMovie(movieList[0].id)
+        movieList?.length > 0 && this.setActiveMovie(movieList[0].id)
       },
 
       activeMovieId(id: number) {

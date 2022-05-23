@@ -1,10 +1,12 @@
 <template>
   <div class="movie-preview">
-    <div class="movie-preview__image">
-      <img :src="image" />
-    </div>
-    <h3 class="movie-preview__title">{{ title }}</h3>
-    <div class="movie-preview__description">{{ description }}</div>
+    <template v-if="title">
+      <div class="movie-preview__image">
+        <img v-if="image" :src="image" />
+      </div>
+      <h3 class="movie-preview__title">{{ title }}</h3>
+    </template>
+    <h3 v-else class="movie-preview__loading">Loading...</h3>
   </div>
 </template>
 
@@ -13,6 +15,7 @@
 
   export default defineComponent({
     name: 'MoviePreview',
+
     props: {
       image: String,
       title: String,
@@ -37,5 +40,9 @@
     height: 60vh;
     border-radius: 3px;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .movie-preview__loading {
+    margin-top: 350px;
   }
 </style>
