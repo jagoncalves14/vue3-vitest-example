@@ -2,11 +2,12 @@ import Homepage from './homepage.vue'
 import { mount, flushPromises } from '@vue/test-utils'
 import * as getMovies from '@/api/get-movies'
 import { getMoviesMock } from '@/api/__mocks__/get-movies'
+import { BASE_IMAGE_URL } from '@/constants'
 
 vi.mock('@/api/get-movies')
 
 describe('Homepage', () => {
-  describe('Mount - with data', () => {
+  describe('Snapshots', () => {
     it('should mount correctly - with data', async () => {
       const wrapper = mount(Homepage)
 
@@ -39,6 +40,91 @@ describe('Homepage', () => {
       await flushPromises()
 
       expect(wrapper.html()).toMatchSnapshot()
+    })
+  })
+
+  describe('Mounted', () => {
+    it('should populate data - with success', async () => {
+      const context = {
+        data: [],
+      }
+
+      await Homepage.mounted?.call(context)
+
+      expect(context.data).toEqual(getMoviesMock.results)
+    })
+
+    it('should populate data - with error', async () => {
+      const context = {
+        data: [],
+      }
+
+      const getMoviesSpy = vi.spyOn(getMovies, 'default')
+      // @ts-ignore
+      getMoviesSpy.mockImplementationOnce(() => {
+        return Promise.reject('Some error')
+      })
+
+      try {
+        await Homepage.mounted?.call(context)
+      } catch (error) {
+        expect(context.data).toEqual([])
+      }
+    })
+  })
+
+  describe('Methods', () => {
+    it('setActiveMovie', () => {
+      const context = {
+        activeMovieId: 0,
+      }
+
+      Homepage.methods?.setActiveMovie.call(context, 123)
+
+      expect(context.activeMovieId).toBe(123)
+    })
+  })
+
+  describe('Watch', () => {
+    describe('data', () => {
+      it('should call setActiveMovieId when has results', () => {
+        const context = {
+          setActiveMovie: vi.fn(),
+        }
+
+        // @ts-ignore
+        Homepage.watch?.data?.handler.call(context, getMoviesMock.results)
+
+        expect(context.setActiveMovie).toBeCalledWith(getMoviesMock.results[0].id)
+      })
+
+      it('should NOT call setActiveMovieId when has no results', () => {
+        const context = {
+          setActiveMovie: vi.fn(),
+        }
+
+        // @ts-ignore
+        Homepage.watch?.data?.handler.call(context, [])
+
+        expect(context.setActiveMovie).not.toHaveBeenCalled()
+      })
+    })
+
+    it('activeMovieId', () => {
+      const context = {
+        data: getMoviesMock.results,
+        preview: {},
+      }
+      context.data[0].id = 123
+
+      // @ts-ignore
+      Homepage.watch?.activeMovieId?.handler.call(context, 123)
+
+      expect(context.preview).toEqual({
+        image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
+        title: context.data[0].title,
+        overview: context.data[0].overview,
+      })
     })
   })
 })

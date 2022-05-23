@@ -10,9 +10,8 @@
   import MovieList from '@/components/movie-list/movie-list.vue'
   import MoviePreview from '@/components/movie-preview/movie-preview.vue'
   import getMoviesList from '@/api/get-movies'
-
-  import { BASE_IMAGE_URL } from '@/constants'
   import { TMovieData, TMoviePreview } from '@/types/api'
+  import { BASE_IMAGE_URL } from '@/constants'
 
   export default defineComponent({
     name: 'HomePage',
@@ -46,17 +45,24 @@
     },
 
     watch: {
-      data(movieList: TMovieData[]) {
-        movieList?.length > 0 && this.setActiveMovie(movieList[0].id)
+      data: {
+        deep: true,
+        handler(movieList: TMovieData[]) {
+          if (movieList?.length) {
+            this.setActiveMovie(movieList[0].id)
+          }
+        },
       },
 
-      activeMovieId(id: number) {
-        const selectedMovie = this.data.find(movie => movie.id === id) as TMovieData
-        this.preview = {
-          image: `${BASE_IMAGE_URL}${selectedMovie.poster_path}`,
-          title: selectedMovie.title,
-          overview: selectedMovie.overview,
-        }
+      activeMovieId: {
+        handler(id: number) {
+          const selectedMovie = this.data.find(movie => movie.id === id) as TMovieData
+          this.preview = {
+            image: `${BASE_IMAGE_URL}${selectedMovie.poster_path}`,
+            title: selectedMovie.title,
+            overview: selectedMovie.overview,
+          }
+        },
       },
     },
   })

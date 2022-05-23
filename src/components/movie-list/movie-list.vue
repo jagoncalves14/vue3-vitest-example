@@ -54,9 +54,7 @@
       },
 
       isActiveMovieOnFilteredList(): boolean {
-        return this.filteredMovies.some((movie: TMovieData) => {
-          return movie.id === this.activeMovieId
-        })
+        return this.filteredMovies.some((movie: TMovieData) => movie.id === this.activeMovieId)
       },
     },
 
@@ -67,7 +65,7 @@
 
       updateSearchQuery(event: Event) {
         const target = event?.target as HTMLInputElement
-        this.searchQuery = target?.value as string | ''
+        this.searchQuery = (target?.value as string) || ''
       },
     },
 

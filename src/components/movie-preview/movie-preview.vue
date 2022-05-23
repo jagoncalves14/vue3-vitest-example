@@ -19,7 +19,6 @@
     props: {
       image: String,
       title: String,
-      description: String,
     },
   })
 </script>
