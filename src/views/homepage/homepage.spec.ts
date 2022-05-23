@@ -51,6 +51,7 @@ describe('Homepage', () => {
 
       await Homepage.mounted?.call(context)
 
+      expect(getMovies).toHaveBeenCalled()
       expect(context.data).toEqual(getMoviesMock.results)
     })
 
@@ -64,13 +65,17 @@ describe('Homepage', () => {
         return Promise.reject('Some error')
       })
 
-      await Homepage.mounted?.call(context)
-      expect(context.data).toEqual([])
+      try {
+        await Homepage.mounted?.call(context)
+      } catch (error) {
+        expect(getMovies).toHaveBeenCalled()
+        expect(context.data).toEqual([])
+      }
     })
   })
 
   describe('Methods', () => {
-    it('setActiveMovie', () => {
+    describe('setActiveMovie', () => {
       const context = {
         activeMovieId: 0,
       }
