@@ -1,6 +1,6 @@
 import Homepage from './homepage.vue'
 import { mount, flushPromises } from '@vue/test-utils'
-import * as getMovies from '@/api/get-movies'
+import getMovies from '@/api/get-movies'
 import { getMoviesMock } from '@/api/__mocks__/get-movies'
 import { BASE_IMAGE_URL } from '@/constants'
 
@@ -17,8 +17,8 @@ describe('Homepage', () => {
     })
 
     it('should mount correctly - with just one movie', async () => {
-      const getMoviesSpy = vi.spyOn(getMovies, 'default')
-      getMoviesSpy.mockImplementationOnce(() => {
+      // @ts-ignore
+      getMovies.mockImplementationOnce(() => {
         return Promise.resolve([getMoviesMock.results[0]])
       })
 
@@ -30,8 +30,8 @@ describe('Homepage', () => {
     })
 
     it('should mount correctly - without movies results', async () => {
-      const getMoviesSpy = vi.spyOn(getMovies, 'default')
-      getMoviesSpy.mockImplementationOnce(() => {
+      // @ts-ignore
+      getMovies.mockImplementationOnce(() => {
         return Promise.resolve([])
       })
 
@@ -59,17 +59,13 @@ describe('Homepage', () => {
         data: [],
       }
 
-      const getMoviesSpy = vi.spyOn(getMovies, 'default')
       // @ts-ignore
-      getMoviesSpy.mockImplementationOnce(() => {
+      getMovies.mockImplementationOnce(() => {
         return Promise.reject('Some error')
       })
 
-      try {
-        await Homepage.mounted?.call(context)
-      } catch (error) {
-        expect(context.data).toEqual([])
-      }
+      await Homepage.mounted?.call(context)
+      expect(context.data).toEqual([])
     })
   })
 

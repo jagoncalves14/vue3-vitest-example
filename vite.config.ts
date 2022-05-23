@@ -28,16 +28,5 @@ export default defineConfig({
     include: ['src/**/*.spec.ts'],
     exclude: ['node_modules', 'dist'],
     setupFiles: ['vitest-setup.ts'],
-    coverage: {
-      include: [
-        'src/**/*.{js,vue,ts}',
-        '!src/main.ts',
-        '!src/constants.ts',
-        '!src/types/**',
-        '!src/**/*.{spec,mock}.{js,ts}',
-        '!src/**/__mocks__/**',
-        '!**/node_modules/**',
-      ],
-    },
   },
 })
