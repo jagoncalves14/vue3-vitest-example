@@ -3,7 +3,6 @@ import { mount, flushPromises } from '@vue/test-utils'
 import * as getMovies from '@/api/get-movies/get-movies'
 import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 import * as getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
-import { getMovieDetailMock } from '@/api/get-movie-detail/__mocks__/get-movie-detail'
 import { BASE_IMAGE_URL } from '@/constants'
 
 vi.mock('@/api/get-movies/get-movies')
@@ -68,10 +67,12 @@ describe('Homepage', () => {
       }
 
       const getMoviesSpy = vi.spyOn(getMovies, 'default')
-      // @ts-ignore
-      getMoviesSpy.mockImplementationOnce(() => {
-        return Promise.reject('Some error')
-      })
+      getMoviesSpy.mockImplementationOnce(() =>
+        // @ts-ignore
+        Promise.reject({
+          error: 'Some error',
+        })
+      )
 
       try {
         await Homepage.mounted?.call(context)
@@ -138,24 +139,49 @@ describe('Homepage', () => {
       })
     })
 
-    it('activeMovieId', async () => {
-      const context = {
-        data: getMoviesMock.results,
-        preview: {},
-      }
-      context.data[0].id = 123
+    describe('activeMovieId', async () => {
+      it('should update preview succesfully', async () => {
+        const context = {
+          data: getMoviesMock.results,
+          preview: {},
+        }
+        context.data[0].id = 123
 
-      const getMovieDetailSpy = vi.spyOn(getMovieDetail, 'default')
+        const getMovieDetailSpy = vi.spyOn(getMovieDetail, 'default')
 
-      // @ts-ignore
-      await Homepage.watch?.activeMovieId?.handler.call(context, 123)
+        // @ts-ignore
+        await Homepage.watch?.activeMovieId?.handler.call(context, 123)
 
-      expect(getMovieDetailSpy).toHaveBeenCalled()
-      expect(context.preview).toEqual({
-        image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
-        title: context.data[0].title,
-        overview: context.data[0].overview,
-        budget: '70,000,000.00',
+        expect(getMovieDetailSpy).toHaveBeenCalledWith(123)
+        expect(context.preview).toEqual({
+          image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
+          title: context.data[0].title,
+          overview: context.data[0].overview,
+          budget: '70,000,000.00',
+        })
+      })
+
+      it('should update preview succesfully', async () => {
+        const context = {
+          data: getMoviesMock.results,
+          preview: {},
+        }
+        context.data[0].id = 123
+
+        const getMovieDetailSpy = vi.spyOn(getMovieDetail, 'default')
+        getMovieDetailSpy.mockImplementationOnce(() =>
+          Promise.reject({
+            error: 'Some error',
+          })
+        )
+
+        try {
+          // @ts-ignore
+          await Homepage.watch?.activeMovieId?.handler.call(context, 123)
+        } catch (_error) {
+          expect(getMovieDetailSpy).toHaveBeenCalledWith(123)
+          expect(context.preview).toEqual({})
+        }
       })
     })
   })

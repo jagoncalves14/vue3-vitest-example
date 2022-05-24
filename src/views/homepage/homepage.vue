@@ -72,15 +72,20 @@
       activeMovieId: {
         async handler(id: number) {
           try {
+            let budgetValue
             const { budget } = await getMovieDetail(id)
             const selectedMovie = this.data.find(movie => movie.id === id) as TMovieData
+            if (budget) {
+              budgetValue = Number(budget.toFixed(2)).toLocaleString('en', {
+                minimumFractionDigits: 2,
+              })
+            }
+
             this.preview = {
               image: `${BASE_IMAGE_URL}${selectedMovie.poster_path}`,
               title: selectedMovie.title,
               overview: selectedMovie.overview,
-              budget: Number(budget.toFixed(2)).toLocaleString('en', {
-                minimumFractionDigits: 2,
-              }),
+              budget: budgetValue,
             }
           } catch (error) {
             throw error
