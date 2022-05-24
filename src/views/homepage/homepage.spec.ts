@@ -95,8 +95,8 @@ describe('Homepage', () => {
 
       vi.runAllTimers()
 
-      expect(window.clearTimeout).toBeCalled()
-      expect(window.setTimeout).toBeCalled()
+      expect(clearTimeout).toBeCalled()
+      expect(setTimeout).toBeCalled()
       expect(context.timer).toBe(10000)
 
       vi.useRealTimers()

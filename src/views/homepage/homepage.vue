@@ -49,7 +49,8 @@
       updateNotificationsTimer() {
         clearTimeout(this.timer)
 
-        this.timer = window.setTimeout(() => {
+        // @ts-ignore
+        this.timer = setTimeout(() => {
           this.timer = 100000
         }, 100000)
 
