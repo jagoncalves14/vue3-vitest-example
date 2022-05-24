@@ -101,7 +101,7 @@ describe('Homepage', () => {
 
       expect(clearTimeout).toBeCalled()
       expect(setTimeout).toBeCalled()
-      expect(context.timer).toBe(10000)
+      expect(context.timer).toBe(100000)
 
       jest.useRealTimers()
     })
