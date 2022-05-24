@@ -3,8 +3,8 @@ import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
 import { getMovieDetailMock } from '@/api/get-movie-detail/__mocks__/get-movie-detail'
 import { API_URL } from '@/constants'
 
-jest.mock('@/api/get-movie-detail/get-movie-detail', () => {
-  jest.fn(() => {
+vi.mock('@/api/get-movie-detail/get-movie-detail', () => {
+  vi.fn(() => {
     return Promise.resolve(getMovieDetailMock)
   })
 })

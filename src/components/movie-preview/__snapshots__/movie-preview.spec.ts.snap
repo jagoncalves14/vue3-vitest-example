@@ -1,4 +1,18 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
+
+exports[`MoviePreview > Snapshots > should mount correctly - loading state 1`] = `
+"<div class=\\"movie-preview\\">
+  <h3 class=\\"movie-preview__loading\\">Loading...</h3>
+</div>"
+`;
+
+exports[`MoviePreview > Snapshots > should mount correctly - with data state 1`] = `
+"<div class=\\"movie-preview\\">
+  <div class=\\"movie-preview__image\\"><img src=\\"https://image.tmdb.org/t/p/tlZpSxYuBRoVJBOpUrPdQe9FmFq.jpg\\"></div>
+  <h3 class=\\"movie-preview__title\\">The Batman</h3>
+  <p class=\\"movie-preview__title\\">Budget: $</p>
+</div>"
+`;
 
 exports[`MoviePreview Snapshots should mount correctly - loading state 1`] = `
 <div class="movie-preview">

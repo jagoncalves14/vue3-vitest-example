@@ -345,4 +345,4 @@ export const getMoviesMock = {
   total_results: 672867,
 }
 
-export default jest.fn(() => Promise.resolve(getMoviesMock.results))
+export default vi.fn(() => Promise.resolve(getMoviesMock.results))
