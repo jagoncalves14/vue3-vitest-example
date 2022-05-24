@@ -1,7 +1,7 @@
 <template>
   <div class="homepage-container">
     <MovieList @selected-movie="setActiveMovie" :movie-list="data" :active-movie-id="activeMovieId" />
-    <MoviePreview :image="preview.image" :title="preview.title" :description="preview.desc" />
+    <MoviePreview :image="preview.image" :title="preview.title" :budget="preview.budget" />
   </div>
 </template>
 
@@ -9,7 +9,8 @@
   import { defineComponent } from 'vue'
   import MovieList from '@/components/movie-list/movie-list.vue'
   import MoviePreview from '@/components/movie-preview/movie-preview.vue'
-  import getMoviesList from '@/api/get-movies'
+  import getMovies from '@/api/get-movies/get-movies'
+  import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
   import { TMovieData, TMoviePreview } from '@/types/api'
   import { BASE_IMAGE_URL } from '@/constants'
 
@@ -32,7 +33,7 @@
 
     async mounted() {
       try {
-        this.data = await getMoviesList()
+        this.data = await getMovies()
       } catch (error) {
         this.data = []
         throw error
@@ -69,12 +70,20 @@
       },
 
       activeMovieId: {
-        handler(id: number) {
-          const selectedMovie = this.data.find(movie => movie.id === id) as TMovieData
-          this.preview = {
-            image: `${BASE_IMAGE_URL}${selectedMovie.poster_path}`,
-            title: selectedMovie.title,
-            overview: selectedMovie.overview,
+        async handler(id: number) {
+          try {
+            const { budget } = await getMovieDetail(id)
+            const selectedMovie = this.data.find(movie => movie.id === id) as TMovieData
+            this.preview = {
+              image: `${BASE_IMAGE_URL}${selectedMovie.poster_path}`,
+              title: selectedMovie.title,
+              overview: selectedMovie.overview,
+              budget: Number(budget.toFixed(2)).toLocaleString('en', {
+                minimumFractionDigits: 2,
+              }),
+            }
+          } catch (error) {
+            throw error
           }
         },
       },

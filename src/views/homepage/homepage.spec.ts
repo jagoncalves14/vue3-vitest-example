@@ -1,7 +1,7 @@
 import Homepage from './homepage.vue'
 import { mount, flushPromises } from '@vue/test-utils'
-import getMovies from '@/api/get-movies'
-import { getMoviesMock } from '@/api/__mocks__/get-movies'
+import getMovies from '@/api/get-movies/get-movies'
+import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 import { BASE_IMAGE_URL } from '@/constants'
 
 vi.mock('@/api/get-movies')

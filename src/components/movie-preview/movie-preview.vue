@@ -5,6 +5,7 @@
         <img v-if="image" :src="image" />
       </div>
       <h3 class="movie-preview__title">{{ title }}</h3>
+      <p class="movie-preview__title">Budget: ${{ budget }}</p>
     </template>
     <h3 v-else class="movie-preview__loading">Loading...</h3>
   </div>
@@ -19,6 +20,7 @@
     props: {
       image: String,
       title: String,
+      budget: String,
     },
   })
 </script>
