@@ -161,7 +161,7 @@ describe('Homepage', () => {
         })
       })
 
-      it('should update preview succesfully', async () => {
+      it('should not do anything when API gives error', async () => {
         const context = {
           data: getMoviesMock.results,
           preview: {},
