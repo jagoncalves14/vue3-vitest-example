@@ -17,6 +17,7 @@
     "@vitest/ui": "latest",
     "@vue/test-utils": "*",
     "c8": "github:brev/c8#all-flag-includes-extensions",
+    "jest-serializer-vue": "^2.0.2",
     "jsdom": "^19.0.0",
     "path": "^0.12.7",
     "postcss": "8.4.13",
