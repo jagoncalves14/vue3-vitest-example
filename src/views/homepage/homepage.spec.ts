@@ -5,7 +5,8 @@ import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
 import { BASE_IMAGE_URL } from '@/constants'
 
-jest.mock('@/api/get-movies')
+jest.mock('@/api/get-movies/get-movies')
+jest.mock('@/api/get-movie-detail/get-movie-detail')
 
 describe('Homepage', () => {
   describe('Snapshots', () => {
