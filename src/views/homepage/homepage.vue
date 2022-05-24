@@ -26,6 +26,7 @@
         preview: {} as TMoviePreview,
         data: [] as TMovieData[],
         activeMovieId: 0,
+        timer: 0,
       }
     },
 
@@ -36,11 +37,23 @@
         this.data = []
         throw error
       }
+
+      this.updateNotificationsTimer()
     },
 
     methods: {
       setActiveMovie(id: number) {
         this.activeMovieId = id
+      },
+
+      updateNotificationsTimer() {
+        clearTimeout(this.timer)
+
+        this.timer = window.setTimeout(() => {
+          this.timer = 100000
+        }, 100000)
+
+        return this.timer
       },
     },
 

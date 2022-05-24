@@ -47,6 +47,7 @@ describe('Homepage', () => {
     it('should populate data - with success', async () => {
       const context = {
         data: [],
+        updateNotificationsTimer: vi.fn(),
       }
 
       await Homepage.mounted?.call(context)
@@ -58,6 +59,7 @@ describe('Homepage', () => {
     it('should populate data - with error', () => {
       const context = {
         data: [],
+        updateNotificationsTimer: vi.fn(),
       }
 
       // @ts-ignore
@@ -80,6 +82,24 @@ describe('Homepage', () => {
       Homepage.methods?.setActiveMovie.call(context, 123)
 
       expect(context.activeMovieId).toBe(123)
+    })
+
+    it('updateNotificationsTimer', async () => {
+      vi.useFakeTimers()
+
+      const context = {
+        timer: 0,
+      }
+
+      Homepage.methods?.updateNotificationsTimer.call(context)
+
+      vi.runAllTimers()
+
+      expect(window.clearTimeout).toBeCalled()
+      expect(window.setTimeout).toBeCalled()
+      expect(context.timer).toBe(10000)
+
+      vi.useRealTimers()
     })
   })
 
