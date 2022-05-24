@@ -2,7 +2,7 @@ import About from './about.vue'
 import { mount } from '@vue/test-utils'
 
 describe('About', () => {
-  describe.skip('Snapshots', () => {
+  describe('Snapshots', () => {
     beforeAll(() => {
       vi.useFakeTimers()
       vi.setSystemTime('2022-05-25')

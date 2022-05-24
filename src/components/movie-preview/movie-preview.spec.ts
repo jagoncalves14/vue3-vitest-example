@@ -2,7 +2,7 @@ import MoviePreview from './movie-preview.vue'
 import { mount } from '@vue/test-utils'
 
 describe('MoviePreview', () => {
-  describe.skip('Snapshots', () => {
+  describe('Snapshots', () => {
     it('should mount correctly - with data state', () => {
       const wrapper = mount(MoviePreview, {
         props: {

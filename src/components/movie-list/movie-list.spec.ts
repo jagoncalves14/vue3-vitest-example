@@ -5,7 +5,7 @@ import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 vi.mock('@/api/get-movies')
 
 describe('MovieList', () => {
-  describe.skip('Snapshots', () => {
+  describe('Snapshots', () => {
     it('should mount correctly - with data', async () => {
       const wrapper = mount(MovieList, {
         props: {
