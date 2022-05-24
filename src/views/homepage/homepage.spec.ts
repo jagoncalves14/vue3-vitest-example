@@ -95,12 +95,12 @@ describe('Homepage', () => {
         timer: 0,
       }
 
+      const clearTimeoutSpy = vi.spyOn(global, 'clearTimeout')
       Homepage.methods?.updateNotificationsTimer.call(context)
 
       vi.runAllTimers()
 
-      expect(clearTimeout).toBeCalled()
-      expect(setTimeout).toBeCalled()
+      expect(clearTimeoutSpy).toBeCalled()
       expect(context.timer).toBe(100000)
 
       vi.useRealTimers()
