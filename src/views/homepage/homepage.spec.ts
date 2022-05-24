@@ -66,7 +66,9 @@ describe('Homepage', () => {
 
       // @ts-ignore
       getMovies.mockImplementationOnce(() => {
-        return Promise.reject('Some error')
+        return Promise.reject({
+          error: 'Some error',
+        })
       })
 
       Homepage.mounted?.call(context)
