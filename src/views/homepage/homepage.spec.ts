@@ -47,6 +47,7 @@ describe('Homepage', () => {
     it('should populate data - with success', async () => {
       const context = {
         data: [],
+        updateNotificationsTimer: vi.fn(),
       }
 
       const getMoviesSpy = vi.spyOn(getMovies, 'default')
@@ -60,6 +61,7 @@ describe('Homepage', () => {
     it('should populate data - with error', async () => {
       const context = {
         data: [],
+        updateNotificationsTimer: vi.fn(),
       }
 
       const getMoviesSpy = vi.spyOn(getMovies, 'default')
@@ -86,6 +88,25 @@ describe('Homepage', () => {
       Homepage.methods?.setActiveMovie.call(context, 123)
 
       expect(context.activeMovieId).toBe(123)
+    })
+
+    it('updateNotificationsTimer', async () => {
+      vi.useFakeTimers()
+
+      const context = {
+        timer: 0,
+      }
+
+      const clearTimeoutSpy = vi.spyOn(global, 'clearTimeout')
+
+      Homepage.methods?.updateNotificationsTimer.call(context)
+
+      vi.runAllTimers()
+
+      expect(clearTimeoutSpy).toBeCalled()
+      expect(context.timer).toBe(100000)
+
+      vi.useRealTimers()
     })
   })
 
