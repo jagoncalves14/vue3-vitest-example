@@ -4,12 +4,12 @@ import { mount } from '@vue/test-utils'
 describe('About', () => {
   describe('Snapshots', () => {
     beforeAll(() => {
-      vi.useFakeTimers()
-      vi.setSystemTime('2022-05-25')
+      jest.useFakeTimers()
+      jest.setSystemTime('2022-05-25')
     })
 
     afterAll(() => {
-      vi.useRealTimers()
+      jest.useRealTimers()
     })
 
     it('should mount correctly', () => {
@@ -21,12 +21,12 @@ describe('About', () => {
 
   describe('Methods', () => {
     beforeAll(() => {
-      vi.useFakeTimers()
-      vi.setSystemTime('2022-05-25')
+      jest.useFakeTimers()
+      jest.setSystemTime('2022-05-25')
     })
 
     afterAll(() => {
-      vi.useRealTimers()
+      jest.useRealTimers()
     })
 
     it('eventDate', done => {

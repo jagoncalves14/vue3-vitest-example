@@ -5,7 +5,7 @@ import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
 import { BASE_IMAGE_URL } from '@/constants'
 
-vi.mock('@/api/get-movies')
+jest.mock('@/api/get-movies')
 
 describe('Homepage', () => {
   describe('Snapshots', () => {
@@ -48,7 +48,7 @@ describe('Homepage', () => {
     it('should populate data - with success', async () => {
       const context = {
         data: [],
-        updateNotificationsTimer: vi.fn(),
+        updateNotificationsTimer: jest.fn(),
       }
 
       await Homepage.mounted?.call(context)
@@ -60,7 +60,7 @@ describe('Homepage', () => {
     it('should populate data - with error', () => {
       const context = {
         data: [],
-        updateNotificationsTimer: vi.fn(),
+        updateNotificationsTimer: jest.fn(),
       }
 
       // @ts-ignore
@@ -86,7 +86,7 @@ describe('Homepage', () => {
     })
 
     it('updateNotificationsTimer', async () => {
-      vi.useFakeTimers()
+      jest.useFakeTimers()
 
       const context = {
         timer: 0,
@@ -94,13 +94,13 @@ describe('Homepage', () => {
 
       Homepage.methods?.updateNotificationsTimer.call(context)
 
-      vi.runAllTimers()
+      jest.runAllTimers()
 
       expect(clearTimeout).toBeCalled()
       expect(setTimeout).toBeCalled()
       expect(context.timer).toBe(10000)
 
-      vi.useRealTimers()
+      jest.useRealTimers()
     })
   })
 
@@ -108,7 +108,7 @@ describe('Homepage', () => {
     describe('data', () => {
       it('should call setActiveMovieId when has results', () => {
         const context = {
-          setActiveMovie: vi.fn(),
+          setActiveMovie: jest.fn(),
         }
 
         // @ts-ignore
@@ -119,7 +119,7 @@ describe('Homepage', () => {
 
       it('should NOT call setActiveMovieId when has no results', () => {
         const context = {
-          setActiveMovie: vi.fn(),
+          setActiveMovie: jest.fn(),
         }
 
         // @ts-ignore

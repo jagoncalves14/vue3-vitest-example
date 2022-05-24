@@ -3,7 +3,7 @@ import getMovies from '@/api/get-movies/get-movies'
 import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 import { API_URL } from '@/constants'
 
-const axiosSpy = vi.spyOn(axios, 'get')
+const axiosSpy = jest.spyOn(axios, 'get')
 axiosSpy.mockImplementationOnce(() =>
   Promise.resolve({
     data: {

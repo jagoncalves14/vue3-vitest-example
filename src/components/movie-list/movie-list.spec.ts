@@ -2,7 +2,7 @@ import MovieList from './movie-list.vue'
 import { mount, flushPromises } from '@vue/test-utils'
 import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 
-vi.mock('@/api/get-movies')
+jest.mock('@/api/get-movies')
 
 describe('MovieList', () => {
   describe('Snapshots', () => {
@@ -111,7 +111,7 @@ describe('MovieList', () => {
   describe('Methods', () => {
     it('previewMovie', () => {
       const context = {
-        $emit: vi.fn(),
+        $emit: jest.fn(),
       }
 
       MovieList.methods?.previewMovie.call(context, getMoviesMock.results[0])
@@ -158,7 +158,7 @@ describe('MovieList', () => {
     describe('filteredMovies', () => {
       it('should set first movie in list as previewMovie', () => {
         const context = {
-          previewMovie: vi.fn(),
+          previewMovie: jest.fn(),
           isActiveMovieOnFilteredList: false,
         }
 
@@ -170,7 +170,7 @@ describe('MovieList', () => {
 
       it('should not change previewMovie when isActiveMovieOnFilteredList is true', () => {
         const context = {
-          previewMovie: vi.fn(),
+          previewMovie: jest.fn(),
           isActiveMovieOnFilteredList: true,
         }
 
@@ -182,7 +182,7 @@ describe('MovieList', () => {
 
       it('should not change previewMovie when moviesList is an empty array', () => {
         const context = {
-          previewMovie: vi.fn(),
+          previewMovie: jest.fn(),
           isActiveMovieOnFilteredList: false,
         }
 
