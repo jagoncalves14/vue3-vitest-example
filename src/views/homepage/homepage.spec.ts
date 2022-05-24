@@ -2,6 +2,7 @@ import Homepage from './homepage.vue'
 import { mount, flushPromises } from '@vue/test-utils'
 import getMovies from '@/api/get-movies/get-movies'
 import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
+import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
 import { BASE_IMAGE_URL } from '@/constants'
 
 vi.mock('@/api/get-movies')
@@ -128,7 +129,7 @@ describe('Homepage', () => {
       })
     })
 
-    it('activeMovieId', () => {
+    it('activeMovieId', async () => {
       const context = {
         data: getMoviesMock.results,
         preview: {},
@@ -136,12 +137,14 @@ describe('Homepage', () => {
       context.data[0].id = 123
 
       // @ts-ignore
-      Homepage.watch?.activeMovieId?.handler.call(context, 123)
+      await Homepage.watch?.activeMovieId?.handler.call(context, 123)
 
+      expect(getMovieDetail).toHaveBeenCalledWith(123)
       expect(context.preview).toEqual({
         image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
         title: context.data[0].title,
         overview: context.data[0].overview,
+        budget: '70,000,000.00',
       })
     })
   })
