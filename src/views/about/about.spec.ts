@@ -29,7 +29,7 @@ describe('About', () => {
       vi.useRealTimers()
     })
 
-    it('eventDate', done => {
+    it('eventDate', () => {
       const context = {
         activeMovieId: 0,
       }
@@ -37,7 +37,6 @@ describe('About', () => {
       const response = About.methods?.eventDate.call(context)
 
       expect(response).toBe('5/25/2022')
-      done()
     })
   })
 
