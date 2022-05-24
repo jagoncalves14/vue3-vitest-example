@@ -3,13 +3,14 @@ import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
 import { getMovieDetailMock } from '@/api/get-movie-detail/__mocks__/get-movie-detail'
 import { API_URL } from '@/constants'
 
-vi.mock('@/api/get-movie-detail/get-movie-detail', () => {
-  vi.fn(() => {
-    return Promise.resolve(getMovieDetailMock)
+const axiosSpy = vi.spyOn(axios, 'get')
+axiosSpy.mockImplementationOnce(() =>
+  Promise.resolve({
+    data: getMovieDetailMock,
   })
-})
+)
 
-it('API: Get Movies List', async () => {
+it('API: Get Movie Detail', async () => {
   const id = 123
   const response = await getMovieDetail(123)
 
