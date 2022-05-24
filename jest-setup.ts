@@ -1,9 +1,9 @@
 // Mock IntersectionObserver
-const IntersectionObserverMock = vi.fn(() => ({
+const IntersectionObserverMock = jest.fn(() => ({
   disconnect: vi.fn(),
   observe: vi.fn(),
   takeRecords: vi.fn(),
   unobserve: vi.fn(),
 }))
 
-vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
+jest.stubGlobal('IntersectionObserver', IntersectionObserverMock)
