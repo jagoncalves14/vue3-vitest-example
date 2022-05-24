@@ -78,7 +78,7 @@ describe('Homepage', () => {
   })
 
   describe('Methods', () => {
-    describe('setActiveMovie', () => {
+    it('setActiveMovie', () => {
       const context = {
         activeMovieId: 0,
       }

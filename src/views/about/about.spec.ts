@@ -47,6 +47,4 @@ describe('About', () => {
       expect(response).toBe('Lisboa')
     })
   })
-
-  describe('Watch', () => {})
 })
