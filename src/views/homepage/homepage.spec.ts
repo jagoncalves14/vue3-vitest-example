@@ -58,7 +58,7 @@ describe('Homepage', () => {
       expect(context.data).toEqual(getMoviesMock.results)
     })
 
-    it('should populate data - with error', () => {
+    it('should populate data - with error', async () => {
       const context = {
         data: [],
         updateNotificationsTimer: vi.fn(),
@@ -71,9 +71,12 @@ describe('Homepage', () => {
         })
       })
 
-      Homepage.mounted?.call(context)
-      expect(getMovies).toHaveBeenCalled()
-      expect(context.data).toEqual([])
+      try {
+        await Homepage.mounted?.call(context)
+      } catch (_error) {
+        expect(getMovies).toHaveBeenCalled()
+        expect(context.data).toEqual([])
+      }
     })
   })
 
