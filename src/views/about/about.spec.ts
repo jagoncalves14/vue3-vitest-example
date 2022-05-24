@@ -45,7 +45,7 @@ describe('About', () => {
     it('location', () => {
       const response = About.computed?.location.call({})
 
-      expect(response).toBe('Porto')
+      expect(response).toBe('Lisboa')
     })
   })
 
