@@ -129,22 +129,47 @@ describe('Homepage', () => {
       })
     })
 
-    it('activeMovieId', async () => {
-      const context = {
-        data: getMoviesMock.results,
-        preview: {},
-      }
-      context.data[0].id = 123
+    describe('activeMovieId', async () => {
+      it('should update preview succesfully', async () => {
+        const context = {
+          data: getMoviesMock.results,
+          preview: {},
+        }
+        context.data[0].id = 123
 
-      // @ts-ignore
-      await Homepage.watch?.activeMovieId?.handler.call(context, 123)
+        // @ts-ignore
+        await Homepage.watch?.activeMovieId?.handler.call(context, 123)
 
-      expect(getMovieDetail).toHaveBeenCalledWith(123)
-      expect(context.preview).toEqual({
-        image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
-        title: context.data[0].title,
-        overview: context.data[0].overview,
-        budget: '70,000,000.00',
+        expect(getMovieDetail).toHaveBeenCalledWith(123)
+        expect(context.preview).toEqual({
+          image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
+          title: context.data[0].title,
+          overview: context.data[0].overview,
+          budget: '70,000,000.00',
+        })
+      })
+
+      it('should not do anything when API gives error', async () => {
+        const context = {
+          data: getMoviesMock.results,
+          preview: {},
+        }
+        context.data[0].id = 123
+
+        // @ts-ignore
+        getMovieDetail.mockImplementationOnce(() =>
+          Promise.reject({
+            error: 'Some error',
+          })
+        )
+
+        try {
+          // @ts-ignore
+          await Homepage.watch?.activeMovieId?.handler.call(context, 123)
+        } catch (_error) {
+          expect(getMovieDetail).toHaveBeenCalledWith(123)
+          expect(context.preview).toEqual({})
+        }
       })
     })
   })

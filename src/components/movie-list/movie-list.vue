@@ -40,19 +40,15 @@
       }
     },
 
+    /* istanbul ignore next */
     mounted() {
-      const onScrollToBottom = this.$el
-
-      // @ts-ignore
-      const onIntersection = ([{ isIntersecting, target }]) => {
+      const onIntersection: IntersectionObserverCallback = ([{ isIntersecting, target }]) => {
         if (isIntersecting) {
           target.classList.add('seen')
         }
       }
-
-      // @ts-ignore
       const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
-      observer.observe(onScrollToBottom)
+      observer.observe(this.$el)
     },
 
     computed: {
