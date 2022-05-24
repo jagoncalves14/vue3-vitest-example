@@ -1,10 +1,13 @@
 import Homepage from './homepage.vue'
 import { mount, flushPromises } from '@vue/test-utils'
-import * as getMovies from '@/api/get-movies'
-import { getMoviesMock } from '@/api/__mocks__/get-movies'
+import * as getMovies from '@/api/get-movies/get-movies'
+import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
+import * as getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
+import { getMovieDetailMock } from '@/api/get-movie-detail/__mocks__/get-movie-detail'
 import { BASE_IMAGE_URL } from '@/constants'
 
-vi.mock('@/api/get-movies')
+vi.mock('@/api/get-movies/get-movies')
+vi.mock('@/api/get-movie-detail/get-movie-detail')
 
 describe('Homepage', () => {
   describe('Snapshots', () => {
@@ -135,20 +138,24 @@ describe('Homepage', () => {
       })
     })
 
-    it('activeMovieId', () => {
+    it('activeMovieId', async () => {
       const context = {
         data: getMoviesMock.results,
         preview: {},
       }
       context.data[0].id = 123
 
-      // @ts-ignore
-      Homepage.watch?.activeMovieId?.handler.call(context, 123)
+      const getMovieDetailSpy = vi.spyOn(getMovieDetail, 'default')
 
+      // @ts-ignore
+      await Homepage.watch?.activeMovieId?.handler.call(context, 123)
+
+      expect(getMovieDetailSpy).toHaveBeenCalled()
       expect(context.preview).toEqual({
         image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
         title: context.data[0].title,
         overview: context.data[0].overview,
+        budget: '70,000,000.00',
       })
     })
   })

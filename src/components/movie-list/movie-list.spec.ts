@@ -1,6 +1,6 @@
 import MovieList from './movie-list.vue'
 import { mount, flushPromises } from '@vue/test-utils'
-import { getMoviesMock } from '@/api/__mocks__/get-movies'
+import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 
 vi.mock('@/api/get-movies')
 

@@ -29,6 +29,7 @@ exports[`Homepage > Snapshots > should mount correctly - with data 1`] = `
   <div class="movie-preview">
     <div class="movie-preview__image"><img src="https://image.tmdb.org/t/p/w780/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg"></div>
     <h3 class="movie-preview__title">Morbius</h3>
+    <p class="movie-preview__title">Budget: $70,000,000.00</p>
   </div>
 </div>
 `;
@@ -43,6 +44,7 @@ exports[`Homepage > Snapshots > should mount correctly - with just one movie 1`]
   <div class="movie-preview">
     <div class="movie-preview__image"><img src="https://image.tmdb.org/t/p/w780/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg"></div>
     <h3 class="movie-preview__title">Morbius</h3>
+    <p class="movie-preview__title">Budget: $70,000,000.00</p>
   </div>
 </div>
 `;
