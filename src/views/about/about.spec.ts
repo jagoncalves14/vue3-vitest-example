@@ -4,12 +4,12 @@ import { mount } from '@vue/test-utils'
 describe('About', () => {
   describe('Snapshots', () => {
     beforeAll(() => {
-      jest.useFakeTimers()
-      jest.setSystemTime('2022-05-25')
+      vi.useFakeTimers()
+      vi.setSystemTime('2022-05-25')
     })
 
     afterAll(() => {
-      jest.useRealTimers()
+      vi.useRealTimers()
     })
 
     it('should mount correctly', () => {
@@ -21,15 +21,15 @@ describe('About', () => {
 
   describe('Methods', () => {
     beforeAll(() => {
-      jest.useFakeTimers()
-      jest.setSystemTime('2022-05-25')
+      vi.useFakeTimers()
+      vi.setSystemTime('2022-05-25')
     })
 
     afterAll(() => {
-      jest.useRealTimers()
+      vi.useRealTimers()
     })
 
-    it('eventDate', done => {
+    it('eventDate', () => {
       const context = {
         activeMovieId: 0,
       }
@@ -37,7 +37,6 @@ describe('About', () => {
       const response = About.methods?.eventDate.call(context)
 
       expect(response).toBe('5/25/2022')
-      done()
     })
   })
 
@@ -45,9 +44,7 @@ describe('About', () => {
     it('location', () => {
       const response = About.computed?.location.call({})
 
-      expect(response).toBe('Porto')
+      expect(response).toBe('Lisboa')
     })
   })
-
-  describe('Watch', () => {})
 })

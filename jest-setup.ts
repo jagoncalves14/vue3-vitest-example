@@ -1,9 +1,9 @@
 // Mock window.IntersectionObserver
-const IntersectionObserverMock = jest.fn(() => ({
-  disconnect: jest.fn(),
-  observe: jest.fn(),
-  takeRecords: jest.fn(),
-  unobserve: jest.fn(),
+const IntersectionObserverMock = vi.fn(() => ({
+  disconnect: vi.fn(),
+  observe: vi.fn(),
+  takeRecords: vi.fn(),
+  unobserve: vi.fn(),
 }))
 
 Object.defineProperty(window, 'IntersectionObserver', {

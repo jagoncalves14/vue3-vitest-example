@@ -89,4 +89,4 @@ export const getMovieDetailMock = {
   vote_count: 1075,
 }
 
-export default jest.fn(() => Promise.resolve(getMovieDetailMock))
+export default vi.fn(() => Promise.resolve(getMovieDetailMock))

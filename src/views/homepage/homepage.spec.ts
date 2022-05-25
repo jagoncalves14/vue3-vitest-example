@@ -5,8 +5,8 @@ import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
 import { BASE_IMAGE_URL } from '@/constants'
 
-jest.mock('@/api/get-movies/get-movies')
-jest.mock('@/api/get-movie-detail/get-movie-detail')
+vi.mock('@/api/get-movies/get-movies')
+vi.mock('@/api/get-movie-detail/get-movie-detail')
 
 describe('Homepage', () => {
   describe('Snapshots', () => {
@@ -49,7 +49,7 @@ describe('Homepage', () => {
     it('should populate data - with success', async () => {
       const context = {
         data: [],
-        updateNotificationsTimer: jest.fn(),
+        updateNotificationsTimer: vi.fn(),
       }
 
       await Homepage.mounted?.call(context)
@@ -58,10 +58,10 @@ describe('Homepage', () => {
       expect(context.data).toEqual(getMoviesMock.results)
     })
 
-    it('should populate data - with error', () => {
+    it('should populate data - with error', async () => {
       const context = {
         data: [],
-        updateNotificationsTimer: jest.fn(),
+        updateNotificationsTimer: vi.fn(),
       }
 
       // @ts-ignore
@@ -71,14 +71,17 @@ describe('Homepage', () => {
         })
       })
 
-      Homepage.mounted?.call(context)
-      expect(getMovies).toHaveBeenCalled()
-      expect(context.data).toEqual([])
+      try {
+        await Homepage.mounted?.call(context)
+      } catch (_error) {
+        expect(getMovies).toHaveBeenCalled()
+        expect(context.data).toEqual([])
+      }
     })
   })
 
   describe('Methods', () => {
-    describe('setActiveMovie', () => {
+    it('setActiveMovie', () => {
       const context = {
         activeMovieId: 0,
       }
@@ -89,21 +92,21 @@ describe('Homepage', () => {
     })
 
     it('updateNotificationsTimer', async () => {
-      jest.useFakeTimers()
+      vi.useFakeTimers()
 
       const context = {
         timer: 0,
       }
 
+      const clearTimeoutSpy = vi.spyOn(global, 'clearTimeout')
       Homepage.methods?.updateNotificationsTimer.call(context)
 
-      jest.runAllTimers()
+      vi.runAllTimers()
 
-      expect(clearTimeout).toBeCalled()
-      expect(setTimeout).toBeCalled()
+      expect(clearTimeoutSpy).toBeCalled()
       expect(context.timer).toBe(100000)
 
-      jest.useRealTimers()
+      vi.useRealTimers()
     })
   })
 
@@ -111,7 +114,7 @@ describe('Homepage', () => {
     describe('data', () => {
       it('should call setActiveMovieId when has results', () => {
         const context = {
-          setActiveMovie: jest.fn(),
+          setActiveMovie: vi.fn(),
         }
 
         // @ts-ignore
@@ -122,7 +125,7 @@ describe('Homepage', () => {
 
       it('should NOT call setActiveMovieId when has no results', () => {
         const context = {
-          setActiveMovie: jest.fn(),
+          setActiveMovie: vi.fn(),
         }
 
         // @ts-ignore

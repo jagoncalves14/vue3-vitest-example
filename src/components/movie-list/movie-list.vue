@@ -40,13 +40,14 @@
       }
     },
 
-    /* istanbul ignore next */
     mounted() {
+      /* c8 ignore start */
       const onIntersection: IntersectionObserverCallback = ([{ isIntersecting, target }]) => {
         if (isIntersecting) {
           target.classList.add('seen')
         }
       }
+      /* c8 ignore end */
       const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
       observer.observe(this.$el)
     },

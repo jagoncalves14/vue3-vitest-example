@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Homepage Snapshots should mount correctly - with data 1`] = `
+exports[`Homepage > Snapshots > should mount correctly - with data 1`] = `
 <div class="homepage-container">
   <div class="movie-list"><input class="movie-list__search" type="text" placeholder="Search for a movie">
     <ul>
@@ -34,7 +34,7 @@ exports[`Homepage Snapshots should mount correctly - with data 1`] = `
 </div>
 `;
 
-exports[`Homepage Snapshots should mount correctly - with just one movie 1`] = `
+exports[`Homepage > Snapshots > should mount correctly - with just one movie 1`] = `
 <div class="homepage-container">
   <div class="movie-list"><input class="movie-list__search" type="text" placeholder="Search for a movie">
     <ul>
@@ -49,7 +49,7 @@ exports[`Homepage Snapshots should mount correctly - with just one movie 1`] = `
 </div>
 `;
 
-exports[`Homepage Snapshots should mount correctly - without movies results 1`] = `
+exports[`Homepage > Snapshots > should mount correctly - without movies results 1`] = `
 <div class="homepage-container">
   <div class="movie-list"><input class="movie-list__search" type="text" placeholder="Search for a movie">
     <!--v-if-->
