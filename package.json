@@ -10,15 +10,13 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest --coverage",
-    "test:ci": "cross-env NODE_ENV=ci vitest --coverage"
+    "test:coverage": "vitest --coverage"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
     "@vitest/ui": "latest",
     "@vue/test-utils": "*",
     "c8": "github:brev/c8#all-flag-includes-extensions",
-    "cross-env": "^7.0.3",
     "jest-serializer-vue": "^2.0.2",
     "jsdom": "^19.0.0",
     "path": "^0.12.7",

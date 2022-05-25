@@ -15,7 +15,7 @@ interface UserConfigWithVitest extends UserConfig {
 
 export default defineConfig(({ mode }): UserConfigWithVitest => {
   const env = { ...process.env, ...loadEnv(mode, process.cwd()) }
-  const isCI = env.NODE_ENV === 'ci'
+  const isCI = env?.CIRCLECI
 
   const config: UserConfigWithVitest = {
     plugins: [vue()],

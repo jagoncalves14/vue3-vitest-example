@@ -7,7 +7,6 @@ specifiers:
   '@vue/test-utils': '*'
   axios: ^0.27.2
   c8: github:brev/c8#all-flag-includes-extensions
-  cross-env: ^7.0.3
   jest-serializer-vue: ^2.0.2
   jsdom: ^19.0.0
   path: ^0.12.7
@@ -38,7 +37,6 @@ devDependencies:
   '@vitest/ui': 0.12.9
   '@vue/test-utils': 2.0.0_vue@3.2.33
   c8: github.com/brev/c8/186825a64cd93dea98a8c0b45e8859f478be3574
-  cross-env: 7.0.3
   jest-serializer-vue: 2.0.2
   jsdom: 19.0.0
   path: 0.12.7
@@ -600,14 +598,6 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
       yaml: 1.10.2
-    dev: true
-
-  /cross-env/7.0.3:
-    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
-    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
-    hasBin: true
-    dependencies:
-      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/7.0.3:
