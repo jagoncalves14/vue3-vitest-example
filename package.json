@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "test:ci": "cross-env NODE_ENV=ci vitest --coverage"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
