@@ -33,6 +33,7 @@ const types = {
     description: 'Changes which add missing tests or correct existing tests',
   },
 }
+
 const typesEnum = Object.keys(conventionalCommit.types)
 
 module.exports = {
@@ -48,6 +49,7 @@ module.exports = {
       2,
       'always',
       commit => {
+        console.log(commit)
         const hasTicketScope = commit.scope && commit.scope.includes('FFE-')
         if (hasTicketScope) {
           const ticketScope = commit.scope.split('-')
