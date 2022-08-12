@@ -4,17 +4,17 @@ on:
     types: [opened, reopened, synchronize, edited]
 
 jobs:
-  updated-pr:
+  updated_pr:
+    name: Validate PR title
     if: github.actor != 'dependabot[bot]' # to avoid running it on Dependabot PRs
     runs-on: ubuntu-latest
-
     steps:
       - name: Check PR Title
-      - uses: tzkhan/pr-update-action@v2
+        uses: tzkhan/pr-update-action@v2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          base-branch-regex: '[A-Za-z\d-_.\\/]+'
-          head-branch-regex: '^([A-Za-z])+-\d+'
+          base-branch-regex: 'feature\/FFE-\d+\N*'
+          head-branch-regex: 'feature\/FFE-\d+\N*'
           title-template: '%headbranch%: '
           body-template: |
             Jira issue: %headbranch%
