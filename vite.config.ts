@@ -22,7 +22,6 @@ export default defineConfig({
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
   },
   test: {
-    /* for example, use global to avoid globals imports (describe, test, expect): */
     globals: true,
     environment: 'jsdom',
     include: ['src/**/*.spec.ts'],
