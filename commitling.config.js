@@ -33,7 +33,6 @@ const types = {
     description: 'Changes which add missing tests or correct existing tests',
   },
 }
-
 const typesEnum = Object.keys(conventionalCommit.types)
 
 module.exports = {
