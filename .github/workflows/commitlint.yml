@@ -1,4 +1,4 @@
-name: Commitlint
+name: Validate commit messages
 
 on:
   # pull_request event is required only for autolabeler
@@ -8,15 +8,14 @@ on:
 
 
 jobs:
-  lint:
-    name: Validate commit messages
+  commitlint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Lint commit messages
+      - name: Commitlint messages
         uses: wagoid/commitlint-github-action@v5
         with:
           configFile: commitlint.config.cjs
