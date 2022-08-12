@@ -14,5 +14,5 @@ jobs:
         uses: onrunning/jira-pr-action@v1
         with:
           jira-account: pixelmatters
-          ticket-regex: ^FFE-\\d+
+          ticket-regex: ^FFE-\d+
           clean-title-regex: ^\\FFE-\\d+\:\ \N*
