@@ -51,7 +51,7 @@ module.exports = {
       commit => {
         const hasScope = commit.scope
         if (hasScope) {
-          const hasTicketScope = commit.scope && commit.scope.includes('FFE-')
+          const hasTicketScope = commit.scope && commit.scope.includes('PXME-')
 
           if (hasTicketScope) {
             const ticketScope = commit.scope.split('-')
@@ -60,7 +60,7 @@ module.exports = {
             if (!hasValidTicketScope) {
               return [
                 false,
-                `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(FFE-0000): add section"`,
+                `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(PXME-0000): add section"`,
               ]
             }
 
@@ -69,13 +69,13 @@ module.exports = {
 
           return [
             false,
-            `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(FFE-0000): add section"`,
+            `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(PXME-0000): add section"`,
           ]
         }
 
         return [
           false,
-          `Scope is not defined. It must specify a valid JIRA ticket number.\ne.g. "feat(FFE-0000): add section"`,
+          `Scope is not defined. It must specify a valid JIRA ticket number.\ne.g. "feat(PXME-0000): add section"`,
         ]
       },
     ],
