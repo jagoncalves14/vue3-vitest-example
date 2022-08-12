@@ -43,7 +43,7 @@ describe('About', () => {
   describe('Computed', () => {
     it('location', () => {
       const response = About.computed?.location.call({})
-
+      
       expect(response).toBe('Lisboa')
     })
   })

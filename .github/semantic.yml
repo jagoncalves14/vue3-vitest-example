@@ -1,0 +1,14 @@
+# Always validate the PR title, and ignore the commits
+titleOnly: true
+types:
+  - build
+  - chore
+  - enh
+  - docs
+  - feat
+  - fix
+  - perf
+  - refactor
+  - revert
+  - style
+  - test

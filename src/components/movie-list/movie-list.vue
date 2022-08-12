@@ -41,15 +41,15 @@
     },
 
     mounted() {
-      /* c8 ignore start */
-      const onIntersection: IntersectionObserverCallback = ([{ isIntersecting, target }]) => {
-        if (isIntersecting) {
-          target.classList.add('seen')
-        }
-      }
+      const onScrollToBottom = this.$el
+
       /* c8 ignore end */
       const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
       observer.observe(this.$el)
+
+      const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
+      observer.observe(onScrollToBottom)
+      /* c8 ignore end */
     },
 
     computed: {

@@ -52,6 +52,8 @@ describe('Homepage', () => {
         updateNotificationsTimer: vi.fn(),
       }
 
+      const getMoviesSpy = vi.spyOn(getMovies, 'default')
+
       await Homepage.mounted?.call(context)
 
       expect(getMovies).toHaveBeenCalled()
@@ -63,7 +65,7 @@ describe('Homepage', () => {
         data: [],
         updateNotificationsTimer: vi.fn(),
       }
-
+      
       // @ts-ignore
       getMovies.mockImplementationOnce(() => {
         return Promise.reject({
@@ -99,6 +101,7 @@ describe('Homepage', () => {
       }
 
       const clearTimeoutSpy = vi.spyOn(global, 'clearTimeout')
+
       Homepage.methods?.updateNotificationsTimer.call(context)
 
       vi.runAllTimers()
