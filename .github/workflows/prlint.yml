@@ -5,6 +5,7 @@ on:
 
 jobs:
   updated_pr:
+    name: Validate PR title
     if: github.actor != 'dependabot[bot]' # to avoid running it on Dependabot PRs
     runs-on: ubuntu-latest
     steps:
