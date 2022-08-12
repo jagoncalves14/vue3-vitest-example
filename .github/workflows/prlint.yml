@@ -13,8 +13,8 @@ jobs:
         uses: tzkhan/pr-update-action@v2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          base-branch-regex: 'master|development|staging|feature\/FFE-\d+\N*'
-          head-branch-regex: 'staging|feature\/FFE-\d+\N*'
+          base-branch-regex: 'master|development|staging|feature\/FFE-\d+\N+'
+          head-branch-regex: 'staging|feature\/FFE-\d+\N+'
           title-template: '%headbranch%: '
           body-template: |
             Jira issue: %headbranch%
