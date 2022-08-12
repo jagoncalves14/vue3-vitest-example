@@ -2,7 +2,7 @@ import MovieList from './movie-list.vue'
 import { mount, flushPromises } from '@vue/test-utils'
 import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
 
-vi.mock('@/api/get-movies')
+vi.mock('@/api/get-movies/get-movies')
 
 describe('MovieList', () => {
   describe('Snapshots', () => {

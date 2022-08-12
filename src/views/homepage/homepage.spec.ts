@@ -1,8 +1,8 @@
 import Homepage from './homepage.vue'
 import { mount, flushPromises } from '@vue/test-utils'
-import * as getMovies from '@/api/get-movies/get-movies'
+import getMovies from '@/api/get-movies/get-movies'
 import { getMoviesMock } from '@/api/get-movies/__mocks__/get-movies'
-import * as getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
+import getMovieDetail from '@/api/get-movie-detail/get-movie-detail'
 import { BASE_IMAGE_URL } from '@/constants'
 
 vi.mock('@/api/get-movies/get-movies')
@@ -19,8 +19,8 @@ describe('Homepage', () => {
     })
 
     it('should mount correctly - with just one movie', async () => {
-      const getMoviesSpy = vi.spyOn(getMovies, 'default')
-      getMoviesSpy.mockImplementationOnce(() => {
+      // @ts-ignore
+      getMovies.mockImplementationOnce(() => {
         return Promise.resolve([getMoviesMock.results[0]])
       })
 
@@ -32,8 +32,8 @@ describe('Homepage', () => {
     })
 
     it('should mount correctly - without movies results', async () => {
-      const getMoviesSpy = vi.spyOn(getMovies, 'default')
-      getMoviesSpy.mockImplementationOnce(() => {
+      // @ts-ignore
+      getMovies.mockImplementationOnce(() => {
         return Promise.resolve([])
       })
 
@@ -56,7 +56,7 @@ describe('Homepage', () => {
 
       await Homepage.mounted?.call(context)
 
-      expect(getMoviesSpy).toHaveBeenCalled()
+      expect(getMovies).toHaveBeenCalled()
       expect(context.data).toEqual(getMoviesMock.results)
     })
 
@@ -65,19 +65,18 @@ describe('Homepage', () => {
         data: [],
         updateNotificationsTimer: vi.fn(),
       }
-
-      const getMoviesSpy = vi.spyOn(getMovies, 'default')
-      getMoviesSpy.mockImplementationOnce(() =>
-        // @ts-ignore
-        Promise.reject({
+      
+      // @ts-ignore
+      getMovies.mockImplementationOnce(() => {
+        return Promise.reject({
           error: 'Some error',
         })
-      )
+      })
 
       try {
         await Homepage.mounted?.call(context)
-      } catch (error) {
-        expect(getMoviesSpy).toHaveBeenCalled()
+      } catch (_error) {
+        expect(getMovies).toHaveBeenCalled()
         expect(context.data).toEqual([])
       }
     })
@@ -147,12 +146,10 @@ describe('Homepage', () => {
         }
         context.data[0].id = 123
 
-        const getMovieDetailSpy = vi.spyOn(getMovieDetail, 'default')
-
         // @ts-ignore
         await Homepage.watch?.activeMovieId?.handler.call(context, 123)
 
-        expect(getMovieDetailSpy).toHaveBeenCalledWith(123)
+        expect(getMovieDetail).toHaveBeenCalledWith(123)
         expect(context.preview).toEqual({
           image: `${BASE_IMAGE_URL}${context.data[0].poster_path}`,
           title: context.data[0].title,
@@ -168,8 +165,8 @@ describe('Homepage', () => {
         }
         context.data[0].id = 123
 
-        const getMovieDetailSpy = vi.spyOn(getMovieDetail, 'default')
-        getMovieDetailSpy.mockImplementationOnce(() =>
+        // @ts-ignore
+        getMovieDetail.mockImplementationOnce(() =>
           Promise.reject({
             error: 'Some error',
           })
@@ -179,7 +176,7 @@ describe('Homepage', () => {
           // @ts-ignore
           await Homepage.watch?.activeMovieId?.handler.call(context, 123)
         } catch (_error) {
-          expect(getMovieDetailSpy).toHaveBeenCalledWith(123)
+          expect(getMovieDetail).toHaveBeenCalledWith(123)
           expect(context.preview).toEqual({})
         }
       })

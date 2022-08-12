@@ -1,8 +1,3 @@
-import jestSerializer from 'jest-serializer-vue'
-
-// Add Snapshot Serializer
-expect.addSnapshotSerializer(jestSerializer)
-
 // Mock window.IntersectionObserver
 const IntersectionObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),

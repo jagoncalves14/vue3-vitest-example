@@ -10,7 +10,7 @@ axiosSpy.mockImplementationOnce(() =>
   })
 )
 
-it('API: Get Movies List', async () => {
+it('API: Get Movie Detail', async () => {
   const id = 123
   const response = await getMovieDetail(123)
 
