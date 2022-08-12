@@ -18,6 +18,6 @@ jobs:
           title-template: '[%headbranch%] '
           body-template: |
             Merging into '%basebranch%'
-            [Link to %headbranch%](https://pixelmatters.atlassian.net/browse/%headbranch%)
+            # [Link to %headbranch%](https://pixelmatters.atlassian.net/browse/%headbranch%)
           body-update-action: 'suffix'
           body-uppercase-base-match: false
