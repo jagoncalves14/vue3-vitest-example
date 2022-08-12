@@ -1,4 +1,4 @@
-const typesEnums = {
+const types = {
   build: {
     description: 'Changes which affect CI configuration files and scripts',
   },
