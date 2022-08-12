@@ -1,3 +1,4 @@
+const projectTicketCode = 'FFE'
 const types = {
   build: {
     description: 'Changes which affect CI configuration files and scripts',
@@ -51,7 +52,7 @@ module.exports = {
       commit => {
         const hasScope = commit.scope
         if (hasScope) {
-          const hasTicketScope = commit.scope && commit.scope.includes('PXME-')
+          const hasTicketScope = commit.scope && commit.scope.includes(`${projectTicketCode}-`)
 
           if (hasTicketScope) {
             const ticketScope = commit.scope.split('-')
@@ -60,7 +61,7 @@ module.exports = {
             if (!hasValidTicketScope) {
               return [
                 false,
-                `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(PXME-0000): add section"`,
+                `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(${projectTicketCode}-0000): add section"`,
               ]
             }
 
@@ -69,13 +70,13 @@ module.exports = {
 
           return [
             false,
-            `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(PXME-0000): add section"`,
+            `Scope "${commit.scope}" is not valid. It must specify a valid JIRA ticket number.\ne.g. "feat(${projectTicketCode}-0000): add section"`,
           ]
         }
 
         return [
           false,
-          `Scope is not defined. It must specify a valid JIRA ticket number.\ne.g. "feat(PXME-0000): add section"`,
+          `Scope is not defined. It must specify a valid JIRA ticket number.\ne.g. "feat(${projectTicketCode}-0000): add section"`,
         ]
       },
     ],
